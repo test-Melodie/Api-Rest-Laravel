@@ -1,5 +1,3 @@
-//App/Http/Controllers/ProductsController
-
 <?php
 
 namespace App\Http\Controllers;
@@ -29,7 +27,18 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product_name = $request->input('name');
+        $product_price = $request->input('price');
+        $product_description = $request->input('description');
+
+        $product = Products::create([
+            'name' => $product_name,
+            'price' => $product_price,
+            'description' => $product_description,
+        ]);
+        return response()->json([
+            'data' => new ProductResource($product)
+        ], 201);
     }
 
     /**
