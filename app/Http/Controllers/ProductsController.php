@@ -15,7 +15,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return ProductResource::collection(Products::all());
     }
 
 
